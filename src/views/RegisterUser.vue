@@ -1,48 +1,48 @@
 <template>
     <div class="register-container">
-      <h2>Registro de Usuario</h2>
-      <form @submit.prevent="register">
+    <h2>Registro de Usuario</h2>
+    <form @submit.prevent="register">
         <input v-model="form.name" type="text" placeholder="Nombre" required />
         <input v-model="form.email" type="email" placeholder="Correo electrónico" required />
         <input v-model="form.password" type="password" placeholder="Contraseña" required />
         <button type="submit">Registrar</button>
-      </form>
-      <p v-if="message">{{ message }}</p>
-      <p>¿Ya tienes cuenta? <router-link to="/login">Iniciar sesion</router-link></p>
+    </form>
+    <p v-if="message">{{ message }}</p>
+    <p>¿Ya tienes cuenta? <router-link to="/login">Iniciar sesion</router-link></p>
     </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  
-  export default {
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
     data() {
-      return {
+    return {
         form: {
-          name: '',
-          email: '',
-          password: ''
+        name: '',
+        email: '',
+        password: ''
         },
         message: '' // Para mostrar mensajes de error o éxito
-      };
+    };
     },
     methods: {
-      async register() {
+    async register() {
         console.log("Formulario enviado:", this.form);  // Verifica los datos enviados
         try {
-          const response = await axios.post('http://localhost:3000/register', this.form);
-          console.log("Respuesta del servidor:", response);
-          this.$router.push('/');
+        const response = await axios.post('https://dermapiel-api.onrender.com/register', this.form);
+        console.log("Respuesta del servidor:", response);
+        this.$router.push('/');
           // Puedes redirigir o hacer algo con la respuesta aquí
         } catch (error) {
-          console.error("Error en la solicitud:", error);
-          this.message = error.response ? error.response.data.message : 'Error de conexión';
+        console.error("Error en la solicitud:", error);
+        this.message = error.response ? error.response.data.message : 'Error de conexión';
         }
-      }
     }
-  };
-  </script>
-  
+    }
+};
+</script>
+
 
 <style scoped>
 :root {
