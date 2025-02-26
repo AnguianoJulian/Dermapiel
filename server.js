@@ -3,8 +3,8 @@ const fs = require('fs');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
-const USERS_FILE = 'users.json';
+const PORT = process.env.PORT || 3000;
+const USERS_FILE = '/tmp/users.json';
 
 app.use(express.json());  // Permite procesar cuerpos de solicitud en formato JSON
 app.use(cors());  // Habilita CORS para que tu servidor pueda ser accesible desde el frontend
@@ -12,7 +12,7 @@ app.use(cors());  // Habilita CORS para que tu servidor pueda ser accesible desd
 // Cargar usuarios desde JSON
 const loadUsers = () => {
     if (!fs.existsSync(USERS_FILE)) return [];
-    const data = fs.readFileSync(USERS_FILE);
+    const data = fs.readFileSync(USERS_FILE, 'utf8');
     return JSON.parse(data);
 };
 
