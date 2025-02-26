@@ -1,0 +1,27 @@
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '../views/HomePage.vue';       
+import ProductList from '../views/ProductList.vue'; 
+import ContactoPage from '../views/ContactoPage.vue';  
+import AcercaDe from '../views/AcercaDe.vue';   
+import LoginUp from '../views/LoginUp.vue';
+import RegisterUser from '../views/RegisterUser.vue';
+
+const routes = [
+  { path: '/', name: 'home', component: HomePage },
+  { path: '/productos', name: 'productos', component: ProductList },
+  { path: '/contacto', name: 'contacto', component: ContactoPage },
+  { path: '/acercade', name: 'acercade', component: AcercaDe },
+
+  
+  { path: '/login', name: 'login', component: LoginUp },
+
+  { path: '/register', name: 'register', component: RegisterUser },
+
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default router;

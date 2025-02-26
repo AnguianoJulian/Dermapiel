@@ -1,0 +1,37 @@
+[
+  {
+    "name": "julihhbj",
+    "email": "usuario1@gmail.com",
+    "password": "123"
+  },
+  {
+    "name": "pedro",
+    "email": "usuario2@gmail.com",
+    "password": "123"
+  },
+  {
+    "name": "julian",
+    "email": "juliananguiano571@gmail.com",
+    "password": "1234"
+  },
+  {
+    "name": "Ana Karen",
+    "email": "anakaren@gmail.com",
+    "password": "12345"
+  },
+  {
+    "name": "Alejandro Perez",
+    "email": "alejandroperez@gmail.com",
+    "password": "12345"
+  },
+  {
+    "name": "Rosalia Iniguez Barajas",
+    "email": "rosaliainiguez@gmail.com",
+    "password": "12345"
+  },
+  {
+    "name": "Monica Lozano",
+    "email": "monica.loz@gmail.com",
+    "password": "345"
+  }
+]
