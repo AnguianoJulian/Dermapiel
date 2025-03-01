@@ -1,240 +1,87 @@
 <template>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="Css/Productos.css">
-</head>
-<body>
-
+    <div>
+    <!-- Barra de Búsqueda -->
+    <div class="busq">
+        <input v-model="searchQuery" type="text" placeholder="Buscar productos..." class="search-input" />
+    </div>
     <main class="main">
-    
-    <div class="product-section">
-        <h1 class="brand-title">Avène</h1>
-        <div class="product-grid">
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Cleanance Solar SPF50+.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Cleanance Solar SPF50+</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un Protector solar de alta protección diseñado específicamente para pieles grasas con imperfecciones.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Ultra-Mat Fluido SPF 50+.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Ultra-Mat Fluido SPF 50+</p>
-                <p class="product-price">$484.00</p>
-                <br>
-                <p class="informacion">Es un protector solar facial de alta protección, formulado especialmente para pieles sensibles, mixtas y grasas.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Agua termal.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Agua termal</p>
-                <p class="product-price">$400.00</p>
-                <br>
-                <p class="informacion">Sus propiedades calmantes, suavizantes y anti-irritantes, lo convierten en un aliado ideal para aliviar la piel sensible, enrojecida o irritada.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Cleanance Comedomed.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Cleanance Comedomed</p>
-                <p class="product-price">$500.00</p>
-                <br>
-                <p class="informacion">Es un concentrado anti-imperfecciones diseñado específicamente para pieles con tendencia acnéica.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Cleanance Solar con Color SPF 50+.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Cleanance Solar con Color SPF 50+</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un protector solar facial con color de alta protección, diseñado especialmente para pieles grasas con imperfecciones.</p>
+        <div v-for="brand in filteredProducts" :key="brand.name" class="product-section">
+            <h1 class="brand-title">{{ brand.name }}</h1>
+            <div class="product-grid">
+            <div v-for="product in brand.items" :key="product.name" class="product-item">
+            <img :src="product.image" :alt="product.name" />
+            <p class="product-name">{{ product.name }}</p>
+            <p class="product-price">{{ product.price }}</p>
+            <br />
+            <p class="informacion">{{ product.description }}</p>
             </div>
         </div>
+        </div>
+    </main>
     </div>
-    
-    <div class="product-section">
-        <h2 class="brand-title">La Roche-Posay</h2>
-        <div class="product-grid">
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Anthelios UVmune 400 SPF 50+ Oil Control Gel-Crema.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Anthelios UVmune 400 SPF 50+ Oil</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un protector solar facial de alta protección, diseñado específicamente para pieles grasas y mixtas</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Effaclar Mat.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Effaclar Mat</p>
-                <p class="product-price">$484.00</p>
-                <br>
-                <p class="informacion">Es un hidratante matificante diseñado específicamente para las pieles grasas.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Effaclar Gel Limpiador Purificante.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Effaclar Gel Limpiador Purificante</p>
-                <p class="product-price">$500.00</p>
-                <br>
-                <p class="informacion">Es un gel limpiador facial diseñado específicamente para pieles grasas con tendencia al acne.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Kerium DS Anti-caspa.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Kerium DS Anti-caspa</p>
-                <p class="product-price">$600.00</p>
-                <br>
-                <p class="informacion">Es un shampoo tratante diseñado específicamente para combatir la caspa persistente.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Mela B3 Serum.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Mela B3 Serum</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un suero concentrado diseñado específicamente a reducir la apariencia de manchas oscuras persistentes y marcas post-imperfecciones.</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="product-section">
-        <h2 class="brand-title">Eucerin</h2>
-        <div class="product-grid">
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Pigment Control Sun Fluid SPF 50+.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Pigment Control Sun Fluid SPF 50+</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un protector solar facial de alta protección con una textura ligera, diseñado específicamente para prevenir y reducir la aparición de manchas en la piel.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Atopi Control Bálsamo Textura Ligera.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Atopi Control Bálsamo</p>
-                <p class="product-price">$484.00</p>
-                <br>
-                <p class="informacion">Es un bálsamo corporal diseñado específicamente para cuidar la piel seca y propensa a la dermatitis atópica.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Anti-Pigment Crema Contorno de Ojos.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Anti-Pigment Crema Contorno de Ojos</p>
-                <p class="product-price">$400.00</p>
-                <br>
-                <p class="informacion">Es una crema diseñada para el contorno de ojos, reduciendo la apariencia de manchas oscuras y ojeras.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Dermopure Oil Control Fluido Facial.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Dermopure Oil Control Fluido Facial</p>
-                <p class="product-price">$500.00</p>
-                <br>
-                <p class="informacion">Es un fluido facial diseñado para pieles grasas y con tendencia a las imperfecciones.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Anti-Pigment Dual Serum Facial.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Anti-Pigment Dual Serum Facial</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un suero facial diseñado específicamente para combatir las manchas en la piel.</p>
-            </div>  
-        </div>
-    </div>
-    
-    <div class="product-section">
-        <h2 class="brand-title">ISDIN</h2>
-        <div class="product-grid">
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Lambdapil Shampoo.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Lambdapil Shampoo</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un shampoo diseñado específicamente para ayudar a reducir la caída del cabello y aumentar su densidad.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Fotoprotector Gel Cream Wet Skin.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Fotoprotector Gel Cream Wet Skin</p>
-                <p class="product-price">$500.00</p>
-                <br>
-                <p class="informacion">Es un protector solar de alta protección en formato de gel-crema diseñado específicamente para aplicarlo sobre la piel mojada.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Warts Verrutop.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Warts Verrutop</p>
-                <p class="product-price">$450.00</p>
-                <br>
-                <p class="informacion">Es una solución tópica diseñada para el tratamiento de distintos tipos de verrugas.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Psorisdin Shampoo.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Psorisdin Shampoo</p>
-                <p class="product-price">$509.00</p>
-                <br>
-                <p class="informacion">Es un shampoo formulado específicamente para ayudar en el tratamiento de la descamación del cuero cabelludo.</p>
-            </div>
-            <div class="product-item">
-                <img :src="require('@/assets/Img/Nutratopic PRO-AMP Loción Corporal Emoliente.jpg')" alt="Producto Eucerin">
-                <p class="product-name">Nutratopic PRO-AMP Loción Corporal Emoliente</p>
-                <p class="product-price">$500.00</p>
-                <br>
-                <p class="informacion">Es una loción corporal diseñada específicamente para hidratar, cuidar y proteger la piel atópica, especialmente en áreas extensas del cuerpo.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="correo-oferta">
-        <div class="info-ofertas">
-            <strong>Especialmente para ti</strong>
-            <br>
-            <p>
-                Regístrate y sé la primera en enterarte <br>
-                de los descuentos, los consejos y todo lo que <br> 
-                ofrece Maca.</p>
-        </div>
-        <div class="correo-info">
-            <input type="email" placeholder="Correo electronico"><input/>
-            <button class="button-enviar">Enviar</button>
-        </div>
-    </div>
-
-</main>
-
-
-
-    <footer class="footer">
-        <div class="domicilio">
-        <div class="footer-section">
-            <p><strong>Encuéntranos en el domicilio:</strong> Hacienda la venta 1752, Balcones de Oblatos, 44720, Guadalajara, Jalisco</p>
-        </div>
-        </div>
-
-        <div class="informacion-global">
-            <div class="footer-section ">
-                <a><strong>Marca</strong></a>
-                <a href="Productos.html">Tienda</a>
-                <a href="Acercade.html">Acerca de</a>
-                <a href="Contacto.html">Contacto</a>
-            </div>
-            <div class="footer-section">
-                <h3>Información</h3>
-                <a href="Contacto.html">Preguntas frecuentes</a>
-            </div>
-            <div class="footer-section">
-                <h3>Redes sociales</h3>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">YouTube</a>
-            </div>
-            <div class="footer-section">
-                <a href="#"><i class="bi bi-wechat"></i></a>
-            </div>
-
-        </div>
-    </footer>
-
-</body>
-</html>
 </template>
 
-<script>
-export default {
-name: 'ProductList'
-}
+<script setup>
+import { ref, computed } from "vue";
+
+  const searchQuery = ref(""); // Estado del input de búsqueda
+
+const products = ref([
+    {
+name: "Avène",
+items: [
+        { name: "Cleanance Solar SPF50+", price: "$509.00", image: new URL("@/assets/Img/Cleanance Solar SPF50+.jpg", import.meta.url).href, description: "Protector solar para piel grasa." },
+        { name: "Ultra-Mat Fluido SPF 50+", price: "$484.00", image: new URL("@/assets/Img/Ultra-Mat Fluido SPF 50+.jpg", import.meta.url).href, description: "Protector solar para piel mixta." },
+        { name: "Agua Termal", price: "$400.00", image: new URL("@/assets/Img/Agua termal.jpg", import.meta.url).href, description: "Calma la piel sensible." },
+        { name: "Cleanance Comedomed", price: "$500.00", image: new URL("@/assets/Img/Cleanance Comedomed.jpg", import.meta.url).href, description: "Tratamiento anti-acné." },
+        { name: "Cleanance Solar con Color SPF 50+", price: "$509.00", image: new URL("@/assets/Img/Cleanance Solar con Color SPF 50+.jpg", import.meta.url).href, description: "Protector solar con color para piel grasa." }
+    ]
+    },
+    {
+    name: "La Roche-Posay",
+    items: [
+        { name: "Anthelios UVmune 400 SPF 50+ Oil", price: "$509.00", image: new URL("@/assets/Img/Anthelios UVmune 400 SPF 50+ Oil Control Gel-Crema.jpg", import.meta.url).href, description: "Protector solar facial para piel grasa." },
+        { name: "Effaclar Mat", price: "$484.00", image: new URL("@/assets/Img/Effaclar Mat.jpg", import.meta.url).href, description: "Hidratante matificante para piel grasa." },
+        { name: "Effaclar Gel Limpiador", price: "$500.00", image: new URL("@/assets/Img/Effaclar Gel Limpiador Purificante.jpg", import.meta.url).href, description: "Gel limpiador facial para piel con acné." },
+        { name: "Kerium DS Anti-caspa", price: "$600.00", image: new URL("@/assets/Img/Kerium DS Anti-caspa.jpg", import.meta.url).href, description: "Shampoo anti-caspa persistente." },
+        { name: "Mela B3 Serum", price: "$509.00", image: new URL("@/assets/Img/Mela B3 Serum.jpg", import.meta.url).href, description: "Serum para manchas y marcas." }
+    ]
+    },
+    {
+    name: "Eucerin",
+    items: [
+        { name: "Pigment Control Sun Fluid SPF 50+", price: "$509.00", image: new URL("@/assets/Img/Pigment Control Sun Fluid SPF 50+.jpg", import.meta.url).href, description: "Protección solar para prevenir manchas." },
+        { name: "Atopi Control Bálsamo", price: "$484.00", image: new URL("@/assets/Img/Atopi Control Bálsamo Textura Ligera.jpg", import.meta.url).href, description: "Bálsamo para piel atópica." },
+        { name: "Anti-Pigment Crema Contorno de Ojos", price: "$400.00", image: new URL("@/assets/Img/Anti-Pigment Crema Contorno de Ojos.jpg", import.meta.url).href, description: "Reduce manchas y ojeras." },
+        { name: "Dermopure Oil Control Fluido Facial", price: "$500.00", image: new URL("@/assets/Img/Dermopure Oil Control Fluido Facial.jpg", import.meta.url).href, description: "Fluido facial para piel grasa." },
+        { name: "Anti-Pigment Dual Serum Facial", price: "$509.00", image: new URL("@/assets/Img/Anti-Pigment Dual Serum Facial.jpg", import.meta.url).href, description: "Serum para manchas en la piel." }
+    ]
+    },
+    {
+    name: "ISDIN",
+    items: [
+        { name: "Lambdapil Shampoo", price: "$509.00", image: new URL("@/assets/Img/Lambdapil Shampoo.jpg", import.meta.url).href, description: "Shampoo para caída del cabello." },
+        { name: "Fotoprotector Gel Cream Wet Skin", price: "$500.00", image: new URL("@/assets/Img/Fotoprotector Gel Cream Wet Skin.jpg", import.meta.url).href, description: "Protector solar en gel-crema." },
+        { name: "Warts Verrutop", price: "$450.00", image: new URL("@/assets/Img/Warts Verrutop.jpg", import.meta.url).href, description: "Solución para tratar verrugas." },
+        { name: "Psorisdin Shampoo", price: "$509.00", image: new URL("@/assets/Img/Psorisdin Shampoo.jpg", import.meta.url).href, description: "Shampoo para descamación del cuero cabelludo." },
+        { name: "Nutratopic PRO-AMP Loción Corporal Emoliente", price: "$500.00", image: new URL("@/assets/Img/Nutratopic PRO-AMP Loción Corporal Emoliente.jpg", import.meta.url).href, description: "Loción para piel atópica." }
+    ]
+    }
+]);
+
+  // Computed para filtrar productos por búsqueda
+const filteredProducts = computed(() => {
+    if (!searchQuery.value) return products.value;
+
+    const query = searchQuery.value.toLowerCase();
+
+    return products.value
+    .map(brand => ({
+        name: brand.name,
+        items: brand.items.filter(product => product.name.toLowerCase().includes(query))
+    }))
+      .filter(brand => brand.items.length > 0); // Excluir marcas sin productos que coincidan
+});
 </script>
 
 <style scoped>
@@ -317,6 +164,21 @@ body {
     font-family: Arial, sans-serif;
     color: #333;
     background-color: var(--clr-blanco2);
+}
+
+.busq{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 10px 40px 10px 10px;
+}
+
+.search-input{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    border: 1px solid var(--clr-grisFuerte);
 }
 
 .product-section { 
