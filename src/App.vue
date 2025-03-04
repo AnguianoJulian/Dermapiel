@@ -1,40 +1,53 @@
 <template>
     <div id="app">
     <header class="encabezado">
-    <div class="nav">
+        <div class="nav">
         <div class="logo-container">
-                <img :src="require('@/assets/Img/Farmacia DermaPiel.png')" alt="Logotipo de Dermapiel" class="logo">
-            </div>
+            <img :src="require('@/assets/Img/Farmacia DermaPiel.png')" alt="Logotipo de Dermapiel" class="logo">
+        </div>
         <nav class="nav links-desplazar">
-        <ul>
+            <ul>
             <a><router-link to="/">Inicio</router-link></a>
             <a><router-link to="/productos">Productos</router-link></a>
             <a><router-link to="/contacto">Contacto</router-link></a>
-            <a><router-link to="/acercade">Acerca de</router-link></a>   
-        </ul>
+            <a><router-link to="/acercade">Acerca de</router-link></a>
+            </ul>
         </nav>
-    </div>
+        </div>
 
-    <div class="nav">
+        <div class="nav">
         <nav>
-        <ul>
-            <a><router-link to="/register">Inicio de sesión</router-link></a>
-            <a class="carrito" href="#"><i class="bi bi-cart"></i></a>
-        </ul>
+            <ul>
+                <a><router-link to="/register">Iniciar sesión</router-link></a>
+                <a class="carrito">
+                <!-- Icono de carrito con el número de productos -->
+                <router-link to="/cart">
+                <i class="bi bi-cart"></i> <!-- Icono del carrito -->
+                <!-- Mostrar la cantidad de productos en el carrito -->
+                <span v-if="cartItemsCount > 0" class="cart-count">{{ cartItemsCount }}</span>
+                </router-link>
+            </a>
+            </ul>
         </nav>
-    </div>
-</header>
-    <router-view></router-view>
+        </div>
+    </header>
+    <router-view></router-view> <!-- Para renderizar las vistas según el enrutador -->
     </div>
 </template>
 
-<script>
-export default {
-name: 'HeaderComponent',
-};
+<script setup>
+import { computed } from 'vue';
+  import { useCartStore } from '@/stores/cartStore'; // Importar la tienda del carrito
+
+  const cartStore = useCartStore(); // Usar la tienda de Pinia
+
+  // Computed para obtener el número de productos en el carrito
+const cartItemsCount = computed(() => cartStore.cart.length);
 </script>
 
 <style scoped>
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 .logo-container {
     text-align: center; /* Centra el logotipo */
     padding: 20px 0; /* Espaciado superior e inferior */

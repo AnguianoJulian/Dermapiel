@@ -63,18 +63,18 @@
         </div>
         <div class="footer-section">
             <h3>Información</h3>
-            <a href="Contacto.html">Preguntas frecuentes</a>
+            <a><router-link to="/contacto">Preguntas frecuentes</router-link></a>
         </div>
         <div class="footer-section">
-            <h3>Redes sociales</h3>
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">YouTube</a>
-        </div>
-        <div class="footer-section">
-            <a href="#"><i class="bi bi-wechat"></i></a>
-        </div>
+                <h3>Redes sociales</h3>
+                <a href="https://www.instagram.com/dermapiel28/saved/" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61573914891631&locale=es_LA" target="_blank">Facebook</a>
+                <a href="https://x.com/derma_piel" target="_blank">Twitter</a>
+                <a href="https://www.youtube.com/channel/UCqx96ulc_RMJIxzm0CqVlmw" target="_blank">YouTube</a>
+            </div>
+            <div class="footer-section">
+                <a href="https://wa.me/523330359838" target="_blank"><i class="bi bi-wechat"></i></a>
+            </div>
 
     </div>
 </footer>

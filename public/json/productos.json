@@ -1,0 +1,22 @@
+[
+  { "id": 1, "nombre": "Cleanance Solar SPF50+", "precio": 509.00 , "imagen": "Cleanance Solar SPF50+ Avene.jpg"},
+  { "id": 2, "nombre": "Ultra-Mat Fluido SPF 50+", "precio": 484.00 , "imagen": "Ultra-Mat Fluido SPF 50+ Avene.jpg"},
+  { "id": 3, "nombre": "Agua termal", "precio": 400.00 , "imagen": "Agua termal Avene.jpg"},
+  { "id": 4, "nombre": "Cleanance Comedomed", "precio": 500.00 , "imagen": "Cleanance Comedomed Avene.jpg"},
+  { "id": 5, "nombre": "Cleanance Solar con Color SPF 50+", "precio": 509.00 , "imagen": "Cleanance Solar con Color SPF 50+ Avene.jpg"},
+  { "id": 6, "nombre": "Anthelios UVmune 400 SPF 50+ Oil Control Gel-Crema", "precio": 509.00 , "imagen": "Anthelios UVmune 400 SPF 50+ La Roche-Posey.jpg"},
+  { "id": 7, "nombre": "Effaclar Mat", "precio": 484.00 , "imagen": "Effaclar Mat La Roche-Posey.jpg"},
+  { "id": 8, "nombre": "Effaclar Gel Limpiador Purificante", "precio": 500.00 , "imagen": "Effaclar Gel Limpiador Purificante La Roche-Posey.jpg"},
+  { "id": 9, "nombre": "Kerium DS Anti-caspa", "precio": 600.00 , "imagen": "Kerium DS Anti-caspa La Roche-Posey.jpg"},
+  { "id": 10, "nombre": "Mela B3 Serum", "precio": 509.00 , "imagen": "Mela B3 Serum La Roche-Posey.jpg"},
+  { "id": 11, "nombre": "Pigment Control Sun Fluid SPF 50+", "precio": 509.00 , "imagen": "Pigment Control Sun Fluid SPF 50+ Eucerin.jpg"},
+  { "id": 12, "nombre": "Atopi Control Bálsamo Textura Ligera", "precio": 484.00 , "imagen": "Atopi Control Bálsamo Textura Ligera Eucerin.jpg"},
+  { "id": 13, "nombre": "Anti-Pigment Crema Contorno de Ojos", "precio": 400.00 , "imagen": "Anti-Pigment Crema Contorno de Ojos Eucerin.jpg"},
+  { "id": 14, "nombre": "Dermopure Oil Control Fluido Facial", "precio": 500.00 , "imagen": "Dermopure Oil Control Fluido Facial Eucerin.jpg"},
+  { "id": 15, "nombre": "Anti-Pigment Dual Serum Facial", "precio": 509.00 , "imagen": "Anti-Pigment Dual Serum Facial Eucerin.jpg"},
+  { "id": 16, "nombre": "Lambdapil Shampoo", "precio": 509.00 , "imagen": "Lambdapil Shampoo ISDIN.jpg"},
+  { "id": 17, "nombre": "Fotoprotector Gel Cream Wet Skin", "precio": 500.00 , "imagen": "Fotoprotector Gel Cream Wet Skin ISDIN.jpg"},
+  { "id": 18, "nombre": "Warts Verrutop", "precio": 450.00 , "imagen": "Warts Verrutop ISDIN.jpg"},
+  { "id": 19, "nombre": "Psorisdin Shampoo", "precio": 509.00 , "imagen": "Psorisdin Shampoo ISDIN.jpg"},
+  { "id": 20, "nombre": "Nutratopic PRO-AMP Loción Corporal Emoliente", "precio": 500.00 , "imagen": "Nutratopic PRO-AMP Loción Corporal Emoliente ISDIN.jpg"}
+]
