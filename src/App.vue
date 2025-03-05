@@ -1,10 +1,11 @@
 <template>
     <div id="app">
     <header class="encabezado">
-        <div class="nav">
         <div class="logo-container">
             <img :src="require('@/assets/Img/Farmacia DermaPiel.png')" alt="Logotipo de Dermapiel" class="logo">
         </div>
+
+        <div class="nav">
         <nav class="nav links-desplazar">
             <ul>
             <a><router-link to="/">Inicio</router-link></a>
@@ -15,8 +16,8 @@
         </nav>
         </div>
 
-        <div class="nav">
-        <nav>
+        <div>
+        <nav class="nav nav-2">
             <ul>
                 <a><router-link to="/register">Iniciar sesión</router-link></a>
                 <a class="carrito">
@@ -99,75 +100,40 @@ a:hover{
 }
 
 /* Estilos responsive */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1465px) {
     /* Ajuste para pantallas de tabletas */
-    .logo {
-        width: 150px; 
+    .encabezado{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        background-color: red;
     }
 
-    .nav {
-        flex-direction: column; 
-        font-size: 1em; 
+    .nav{
+        flex-direction: column;
+        margin: 10px;
     }
+
+}
+
+@media screen and (max-width: 940px){
+
+
+    .nav{
+        flex-direction: column;
+        margin: 10px;
+    }
+
 
     .nav ul {
         display: flex;
-        flex-direction: column; 
-        padding: 0;
-        list-style-type: none;
+        flex-direction: column;
     }
 
-    .nav a {
-        padding: 10px 0; 
-        font-size: 1.1em; 
-    }
-}
-
-@media screen and (max-width: 768px) {
-    /* Ajuste para pantallas de teléfonos móviles */
-    .encabezado {
-        padding: 20px; 
-        height: auto; 
-    }
-
-    .logo {
-        width: 150px;
-    }
-
-    .nav {
-        font-size: 1em; 
-        flex-direction: column; 
-    }
-
-    .nav ul {
-        display: flex;
-        flex-direction: column; 
-        padding: 0;
-    }
-
-    .nav a {
-        padding: 10px 0;
-        font-size: 1em; 
-    }
-
-    .carrito {
-        font-size: 1.5em; 
-    }
-}
-
-@media screen and (max-width: 480px) {
-    /* Ajuste para pantallas muy pequeñas (teléfonos) */
-    .nav a {
-        padding: 8px 0; 
-        font-size: 0.9em; 
-    }
-
-    .logo {
-        width: 100px; 
-    }
-
-    .carrito {
-        font-size: 1.8em; 
+    .nav ul a{
+        padding: 5px;
     }
 }
 

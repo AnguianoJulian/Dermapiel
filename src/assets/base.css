@@ -196,3 +196,26 @@ a{
     color: var(--clr-negro);
 }
 
+@media screen and (max-width: 940px){
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer, .informacion-global{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-section{
+        margin-top: 35px;
+    }
+
+    .informacion-global{
+        padding: 15px;
+    }
+}
