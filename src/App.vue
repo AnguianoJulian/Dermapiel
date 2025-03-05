@@ -108,7 +108,6 @@ a:hover{
         align-items: center;
         justify-content: center;
         height: auto;
-        background-color: red;
     }
 
     .nav{

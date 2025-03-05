@@ -198,6 +198,7 @@ a{
 
 @media screen and (max-width: 940px){
     .main{
+        width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -217,5 +218,20 @@ a{
 
     .informacion-global{
         padding: 15px;
+    }
+
+    .correo-oferta{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .correo-info{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    .correo-info input{
+        margin-top: 5px;
     }
 }
