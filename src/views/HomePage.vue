@@ -10,26 +10,27 @@
 <body>
     <main class="main">
         <div class="content-oferta">
-            <p>Tu piel es el reflejo de tu bienestar. Cuídala con <br> amor, y ella te lo agradecerá.</p>
-            <br>
-            <div class="oferta-info">
-            <div>
-                <p>OFERTA</p>
-            </div>
-            <div>
-                <img :src="require('@/assets/Img/eucerin atopic.jpg')" alt="" width="120px">
-            </div>
-            <div class="text-oferta">
-                <p>Tienda</p>
-                <p class="text-desplazar">Cuerpo</p>
-            </div>
-            <div>
-                <img :src="require('@/assets/Img/effaclar limpiador.jpg')" alt="" width="120px">
-            </div>
-            <div class="text-oferta">
-                <p>Tienda</p>
-                <p class="text-desplazar">Rostro</p>
-            </div>
+            <!-- Slider de imagenes -->
+            <div class="slider">
+                <figure>
+                    <div class="slide">
+                        <h1>Eucerin Atopic</h1>
+                        <img :src="require('@/assets/Img/eucerin atopic1.jpg')" alt="" >
+                    </div>
+                    <div class="slide">
+                        <h1>Agua termal</h1>
+                        <img :src="require('@/assets/Img/Agua termal1.jpg')" alt="" >
+                    </div>
+                    <div class="slide">
+                        <h1>Effaclar Mat</h1>
+                        <img :src="require('@/assets/Img/Effaclar Mat1.jpg')" alt="" >
+                    </div>
+                    <div class="slide">
+                        <h1>Mela B3 Serum</h1>
+                        <img :src="require('@/assets/Img/Mela B3 Serum1.jpg')" alt="" >
+                    </div>
+                    
+                </figure>
             </div>
         </div>
 
@@ -76,6 +77,34 @@
             </div>
         </div>
 
+        <!-- Validación de páginas -->
+        <div>
+    <h1 :style="{ textAlign: 'center', margin: '20px' }">Valoración de Página</h1>
+
+    <div class="rating-container">
+    <button
+        v-for="star in stars"
+        :key="star"
+        :data-value="star"
+        @click="setRating(star)"
+        @mouseover="highlightStars(star)"
+        @mouseleave="highlightStars(currentRating)"
+        :class="{'selected': star <= currentRating}"
+        class="star-button"
+    >
+        ★
+    </button>
+    </div>
+
+    <div id="rating-result">
+    <p :style="{ textAlign: 'center', margin: '20px' }">
+        Valoración: <span>{{ currentRating }}</span>/5
+    </p>
+    </div>
+</div>
+
+
+    
         <div class="correo-oferta">
             <div class="info-ofertas">
                 <strong>Especialmente para ti</strong>
@@ -130,11 +159,67 @@
 
 <script>
 export default {
-    name: 'HomePage'
+    name: 'HomePage',
+    data() {
+    return {
+    stars: [1, 2, 3, 4, 5], 
+    currentRating: 0, 
+    };
+},
+created() {
+    
+    const savedRating = localStorage.getItem('rating');
+    if (savedRating) {
+    this.currentRating = parseInt(savedRating, 10); 
+    }
+},
+methods: {
+
+    setRating(value) {
+    this.currentRating = value;
+    localStorage.setItem('rating', value); 
+    },
+    
+    highlightStars(value) {
+    this.currentRating = value;
+    },
+},
+
+    
 }
 </script>
 
 <style scoped>
+
+/* Estilo de valoración de páginas */
+.rating-container {
+    display: flex;
+    justify-content: center;
+}
+
+.star-button {
+    padding: 0;
+    margin: 0;
+    font-size: 3em; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s, box-shadow 0.3s;
+    color: #ddd; 
+}
+
+.star-button.selected {
+    color: gold;
+    transform: scale(1.2); 
+}
+
+.star-button:hover {
+    color: orange;
+    transform: scale(1.3); 
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); 
+}
+
+
 .content-oferta{
     width: 100%;
     padding: 0 30px;
@@ -170,16 +255,6 @@ export default {
 
 .info-doc ul{
     padding-left: 30px;
-}
-
-.button{
-    margin: 30px 0;
-    border: none;
-    width: 150px;
-    height: 50px;
-    background-color: var(--clr-negro);
-    color: var(--clr-blanco);
-    font-weight: bold;
 }
 
 .foto-doc{
@@ -233,7 +308,7 @@ export default {
 .button {
     margin: 30px 0;
     border: none;
-    width: 150px;
+    width: 200px;
     height: 50px;
     background-color: var(--clr-negro);
     color: var(--clr-blanco);
@@ -247,6 +322,88 @@ export default {
 .cita {
     color: var(--clr-blanco);
     text-decoration: none;
+}
+
+.slider{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+figure{
+    position: relative;
+    left: 0;
+    width: 400%;
+    animation: 20s slide infinite;
+}
+
+.slide{
+    position: relative;
+    width: 25%;
+    height: auto;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slide h1{
+    position: absolute;
+    font-size: 2.30rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.slide img{
+    width: 30%;
+}
+
+@keyframes slide{
+    0%{
+        left: 0;
+    }
+    10%{
+        left: 0;
+    }
+    20%{
+        left: -100%;
+    }
+    30%{
+        left: -100%;
+    }
+    40%{
+        left: -200%;
+    }
+    50%{
+        left: -200%;
+    }
+    55%{
+        left: -300%;
+    }
+    65%{
+        left: -300%;
+    }
+    66%{
+        left: -200%;
+    }
+    74%{
+        left: -200%;
+    }
+    75%{
+        left: -100%;
+    }
+    85%{
+        left: -100%;
+    }
+    90%{
+        left: 0;
+    }
+    100%{
+        left: 0;
+    }
 }
 
 /* Estilos para dispositivos móviles (max-width: 767px) */
@@ -343,7 +500,7 @@ export default {
 @media (min-width: 1025px) {
     .content-oferta p {
         font-size: 24px;
-    }
+    } 
 
     .oferta-info {
         flex-wrap: nowrap; 

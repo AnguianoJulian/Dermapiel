@@ -16,7 +16,7 @@
         </nav>
         </div>
 
-        <div>
+        
         <nav class="nav nav-2">
             <ul>
                 <a><router-link to="/register">Iniciar sesión</router-link></a>
@@ -30,7 +30,7 @@
             </a>
             </ul>
         </nav>
-        </div>
+        
     </header>
     <router-view></router-view> <!-- Para renderizar las vistas según el enrutador -->
     </div>

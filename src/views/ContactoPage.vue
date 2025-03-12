@@ -127,6 +127,34 @@
         </div>
 
 
+        <!-- Validación de páginas -->
+        <div>
+    <h1 :style="{ textAlign: 'center', margin: '20px' }">Valoración de Página</h1>
+
+    <div class="rating-container">
+    <button
+        v-for="star in stars"
+        :key="star"
+        :data-value="star"
+        @click="setRating(star)"
+        @mouseover="highlightStars(star)"
+        @mouseleave="highlightStars(currentRating)"
+        :class="{'selected': star <= currentRating}"
+        class="star-button"
+    >
+        ★
+    </button>
+    </div>
+
+    <div id="rating-result">
+    <p :style="{ textAlign: 'center', margin: '20px' }">
+        Valoración: <span>{{ currentRating }}</span>/5
+    </p>
+    </div>
+</div>
+
+
+
         <div class="correo-oferta">
             <div class="info-ofertas">
                 <strong>Especialmente para ti</strong>
@@ -182,10 +210,64 @@
 <script>
 export default {
     name: "ContactoPage",
+    data() {
+    return {
+    stars: [1, 2, 3, 4, 5], 
+    currentRating: 0, 
+    };
+},
+created() {
+    
+    const savedRating = localStorage.getItem('rating');
+    if (savedRating) {
+    this.currentRating = parseInt(savedRating, 10); 
+    }
+},
+methods: {
+
+    setRating(value) {
+    this.currentRating = value;
+    localStorage.setItem('rating', value); 
+    },
+    
+    highlightStars(value) {
+    this.currentRating = value;
+    },
+},
+
+    
 };
 </script>
 
 <style scoped>
+/* Estilo de valoración de páginas */
+.rating-container {
+    display: flex;
+    justify-content: center;
+}
+
+.star-button {
+    padding: 0;
+    margin: 0;
+    font-size: 3em; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s, box-shadow 0.3s;
+    color: #ddd; 
+}
+
+.star-button.selected {
+    color: gold;
+    transform: scale(1.2); 
+}
+
+.star-button:hover {
+    color: orange;
+    transform: scale(1.3); 
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); 
+}
+
 .contacto{
     display: flex;
     flex-wrap: wrap;
