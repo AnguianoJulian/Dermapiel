@@ -412,6 +412,10 @@ figure{
         font-size: 18px;
     }
 
+    .slide h1{
+        font-size: 1rem;
+    }
+
     .oferta-info {
         flex-direction: column; 
         align-items: center; 
