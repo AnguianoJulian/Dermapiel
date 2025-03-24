@@ -324,6 +324,8 @@ methods: {
     text-decoration: none;
 }
 
+/* Estilos del slider */
+
 .slider{
     width: 100%;
     height: auto;

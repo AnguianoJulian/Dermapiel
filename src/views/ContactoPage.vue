@@ -28,6 +28,34 @@
                     Hacienda la venta 1752, Balcones de oblatos, <br> 
                     44720, Guadalajara, Jalisco
                 </p>
+<br>
+<br>
+<br>
+    <section class="recommendations">
+    <h2>Consultorio dermatologico</h2>
+    <br>
+    <div class="recommendations-grid">
+    <a 
+        v-for="rec in Recommendations" 
+        :key="rec.id"
+        :href="rec.youtubeUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="recommendation-card"
+    >
+        <img :src="rec.imageUrl" :alt="rec.title">
+        <h3>{{ rec.title }}</h3>
+    </a>
+    </div>
+</section>
+<br>
+<br>
+                <div class="galeria">
+                    <img :src="require('@/assets/Img/IMG-20250317-WA0001.jpg')" alt="">
+                    <img :src="require('@/assets/Img/IMG-20250317-WA0002.jpg')" alt="">
+                    <img :src="require('@/assets/Img/IMG-20250317-WA0003.jpg')" alt="">
+                    <img :src="require('@/assets/Img/IMG-20250317-WA0004.jpg')" alt="">
+                </div>
             </div>
 
             <div class="formulario-contacto">
@@ -59,8 +87,11 @@
             
             </div>
         </div>
+        <br>
+        <br>
         <div class="preguntas-frecuentes">
             <h2><strong>Preguntas Frecuentes de Dermapiel</strong></h2>
+            <br>
             <ol>
                 <li>
                     <strong> ¿Qué tipo de productos ofrece Dermapiel?</strong> <br>
@@ -209,35 +240,39 @@
 
 <script>
 export default {
-    name: "ContactoPage",
-    data() {
+name: "ContactoPage",
+data() {
     return {
-    stars: [1, 2, 3, 4, 5], 
-    currentRating: 0, 
+    stars: [1, 2, 3, 4, 5],
+    currentRating: 0,
+    Recommendations: [
+        {
+        id: 1,
+        title: 'Farmacia DermaPiel',
+        imageUrl: 'https://i9.ytimg.com/vi_webp/Eu2zikCnL5c/mqdefault.webp?v=67de0816&sqp=COijhr8G&rs=AOn4CLAE8ytJoxmsVVVQBmWyqGeScGFv-A',
+        youtubeUrl: 'https://youtu.be/Eu2zikCnL5c'
+        }
+    ]
     };
 },
 created() {
-    
     const savedRating = localStorage.getItem('rating');
     if (savedRating) {
-    this.currentRating = parseInt(savedRating, 10); 
+    this.currentRating = parseInt(savedRating, 10);
     }
 },
 methods: {
-
     setRating(value) {
     this.currentRating = value;
-    localStorage.setItem('rating', value); 
+    localStorage.setItem('rating', value);
     },
-    
     highlightStars(value) {
     this.currentRating = value;
     },
 },
-
-    
 };
 </script>
+
 
 <style scoped>
 /* Estilo de valoración de páginas */
@@ -353,6 +388,28 @@ methods: {
     margin: 30px;
     font-size: 14px;
 }
+/*Galeria*/
+.galeria{
+    margin-top: 20px;
+    width: 500px;
+    display: flex;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.galeria img{
+    width: 0;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+}
+
+.galeria img:hover{
+    width: 250px;
+    opacity: 1;
+    cursor: crosshair;
+}
 
 /* Responsive styles */
 @media (max-width: 1200px) {
@@ -437,6 +494,14 @@ methods: {
     }
 }
 
+.galeria{
+    width: 450px;
+}
+
+.galeria img:hover{
+    width: 200px;
+}
+
 @media (max-width: 480px) {
     .info-basica .strong {
         font-size: 20px;
@@ -475,8 +540,57 @@ methods: {
         font-size: 0.9em;
     }
 
+    .galeria{
+    width: 350px;
 }
 
+}
+.recommendations {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+}
 
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 2rem; /* Ajusta el tamaño de la letra */
+}
 
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recommendation-card {
+  display: block;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-4px);
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recommendation-card h3 {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
+}
 </style>

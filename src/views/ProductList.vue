@@ -25,6 +25,24 @@
         </div>
     </main>
     </div>
+    <section class="recommendations">
+    <h2>Recomendaciones</h2>
+    <br>
+    <br>
+    <div class="recommendations-grid">
+      <a 
+        v-for="rec in recommendations" 
+        :key="rec.id"
+        :href="rec.youtubeUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="recommendation-card"
+      >
+        <img :src="rec.imageUrl" :alt="rec.title">
+        <h3>{{ rec.title }}</h3>
+      </a>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -95,6 +113,22 @@ const cartStore = useCartStore();
 const addToCart = (product) => {
     cartStore.addToCart(product);
 };
+
+const recommendations = [
+  {
+    id: 1,
+    title: 'Rutina de limpieza para piel seca',
+    imageUrl: 'https://i9.ytimg.com/vi_webp/wfZc1QDLRhw/mqdefault.webp?v=67de07f7&sqp=COijhr8G&rs=AOn4CLC1FE2s7Q9VFRs3X6KwGhluey-HOw',
+    youtubeUrl: 'https://youtu.be/wfZc1QDLRhw'
+  },
+  {
+    id: 2,
+    title: 'Rutina de limpieza para piel grasa',
+    imageUrl: 'https://i9.ytimg.com/vi_webp/kovaxLJ8VLE/mqdefault.webp?v=67de069f&sqp=COijhr8G&rs=AOn4CLBtEx-Y2SF2fIyw6SvFU-ZIMNoorw',
+    youtubeUrl: 'https://youtu.be/kovaxLJ8VLE'
+  }
+]
+
 </script>
 
 <style scoped>
@@ -143,12 +177,6 @@ a{
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-a:hover{
-    border-radius: 4px;
-    background-color: var(--clr-negro);
-    color: var(--clr-blanco);
 }
 
 .links-desplazar{
@@ -560,5 +588,53 @@ body {
         width: 60px;
         height: 60px;
     }
+}
+
+.recommendations {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+   font-size: 4rem; /* Ajusta el tamaño de la letra */
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recommendation-card {
+  display: block;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-4px);
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recommendation-card h3 {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
 }
 </style>

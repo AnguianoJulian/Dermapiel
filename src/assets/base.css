@@ -198,7 +198,7 @@ a{
 
 @media screen and (max-width: 940px){
     .main{
-        width: 70%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
