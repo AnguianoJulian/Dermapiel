@@ -29,25 +29,12 @@
                     44720, Guadalajara, Jalisco
                 </p>
 <br>
-<br>
-<br>
-    <section class="recommendations">
-    <h2>Consultorio dermatologico</h2>
-    <br>
-    <div class="recommendations-grid">
-    <a 
-        v-for="rec in Recommendations" 
-        :key="rec.id"
-        :href="rec.youtubeUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="recommendation-card"
-    >
-        <img :src="rec.imageUrl" :alt="rec.title">
-        <h3>{{ rec.title }}</h3>
-    </a>
-    </div>
-</section>
+<section class="recommendations">
+                    <h2 class="recommendations-title">Consultorio dermatológico.</h2>
+                    <div class="video-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Eu2zikCnL5c?si=tACwvhZpfuWA4PSf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </section>   
 <br>
 <br>
                 <div class="galeria">
@@ -245,14 +232,6 @@ data() {
     return {
     stars: [1, 2, 3, 4, 5],
     currentRating: 0,
-    Recommendations: [
-        {
-        id: 1,
-        title: 'Farmacia DermaPiel',
-        imageUrl: 'https://i9.ytimg.com/vi_webp/Eu2zikCnL5c/mqdefault.webp?v=67de0816&sqp=COijhr8G&rs=AOn4CLAE8ytJoxmsVVVQBmWyqGeScGFv-A',
-        youtubeUrl: 'https://youtu.be/Eu2zikCnL5c'
-        }
-    ]
     };
 },
 created() {
@@ -546,15 +525,15 @@ methods: {
 
 }
 .recommendations {
-  margin-top: 2rem;
-  padding: 2rem;
-  background-color: #ffffff;
+    margin-top: 20px;
+    width: 500px; /* Mismo ancho que la galería */
 }
 
 h2 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
+  text-align: left; /* Cambiado de center a left */
   font-size: 2rem; /* Ajusta el tamaño de la letra */
 }
 
@@ -592,5 +571,23 @@ h2 {
   font-size: 1.1rem;
   color: #333;
   text-align: center;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 </style>
