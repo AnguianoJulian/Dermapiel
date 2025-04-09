@@ -30,11 +30,11 @@
                 </p>
 <br>
 <section class="recommendations">
-                    <h2 class="recommendations-title">Consultorio dermatológico.</h2>
+                    <h2 class="recommendations-title">Consultorio dermatologico</h2>
                     <div class="video-wrapper">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/Eu2zikCnL5c?si=tACwvhZpfuWA4PSf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-                </section>   
+                </section>                    
 <br>
 <br>
                 <div class="galeria">
@@ -45,32 +45,44 @@
                 </div>
             </div>
 
+            
+            <!-- Formulario -->
             <div class="formulario-contacto">
-                <form action="#" method="POST" class="contact-form">
-                    <div class="nombres-input">
-                        <div class="input-nombre">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre">
-                        </div>
-                        <div class="input-apellido">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" id="apellidos" name="apellidos">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="email">Correo electrónico <span>(obligatorio)</span></label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="asunto">Asunto <span>(obligatorio)</span></label>
-                        <input type="text" id="asunto" name="asunto" required>
-                    </div>
-                    <div>
-                        <label for="mensaje">Mensaje <span>(obligatorio)</span></label>
-                        <textarea id="mensaje" name="mensaje" rows="3" required></textarea>
-                    </div>
-                    <button type="submit">Enviar</button>
-                </form>
+                <form @submit.prevent="submitForm" action="#" method="POST" class="contact-form">
+    <div class="nombres-input">
+        <div class="input-nombre">
+            <label for="nombre">Nombre</label>
+            <input v-model="form.nombre" type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="input-apellido">
+            <label for="apellidos">Apellidos</label>
+            <input v-model="form.apellidos" type="text" id="apellidos" name="apellidos" required>
+        </div>
+    </div>
+    <div>
+        <label for="email">Correo electrónico <span>(obligatorio)</span></label>
+        <input v-model="form.email" type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="asunto">Asunto <span>(obligatorio)</span></label>
+        <input v-model="form.asunto" type="text" id="asunto" name="asunto" required>
+    </div>
+    <div>
+        <label for="mensaje">Mensaje <span>(obligatorio)</span></label>
+        <textarea v-model="form.mensaje" id="mensaje" name="mensaje" rows="3" required></textarea>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+<!-- Mensaje de éxito -->
+<div v-if="showSuccessMessage" class="success-message">
+    <p>¡Envío exitoso! Gracias por contactarnos.</p>
+</div>
+
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9405.412009527347!2d-103.29188600783066!3d20.688267774248715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b142178b4deb%3A0xfe9380204d615141!2sC.%20Hacienda%20La%20Venta%201752%2C%20Balcones%20de%20Oblatos%2C%2044720%20Guadalajara%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1742860445673!5m2!1ses-419!2smx"
+width="570" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
             
             </div>
         </div>
@@ -230,6 +242,14 @@ export default {
 name: "ContactoPage",
 data() {
     return {
+        form: {
+            nombre: '',
+            apellidos: '',
+            email: '',
+            asunto: '',
+            mensaje: ''
+        },
+    showSuccessMessage: false,
     stars: [1, 2, 3, 4, 5],
     currentRating: 0,
     };
@@ -241,6 +261,18 @@ created() {
     }
 },
 methods: {
+    submitForm() {
+        if (this.form.nombre && this.form.apellidos && this.form.email && this.form.asunto && this.form.mensaje) {
+            this.showSuccessMessage = true;
+            setTimeout(() => {
+                this.showSuccessMessage = false;
+            }, 6000); 
+
+            this.form = { nombre: '', apellidos: '', email: '', asunto: '', mensaje: '' };
+        } else {
+            alert('Por favor, completa todos los campos obligatorios.');
+        }
+    },
     setRating(value) {
     this.currentRating = value;
     localStorage.setItem('rating', value);
@@ -589,5 +621,38 @@ h2 {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* CSS del mensaje formulario */
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease forwards, fadeOut 0.5s ease forwards 2.5s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 </style>

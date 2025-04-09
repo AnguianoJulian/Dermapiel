@@ -14,7 +14,9 @@ const routes = [
   { path: '/acercade', name: 'acercade', component: AcercaDe },
   { path: '/login', name: 'login', component: LoginUp },
   { path: '/register', name: 'register', component: RegisterUser },
-  { path: '/cart', name: 'cart', component: CartPage } // Ruta para el carrito
+  { path: '/cart', name: 'cart', component: CartPage }, // Ruta para el carrito
+  { path: '/pago', name: 'Pago', component: () => import('@/views/FormularioPago.vue')
+  }
 ];
 
 const router = createRouter({

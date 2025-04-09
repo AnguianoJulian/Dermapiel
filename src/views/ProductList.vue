@@ -12,7 +12,7 @@
             <div v-for="product in brand.items" :key="product.name" class="product-item">
             <img :src="product.image" :alt="product.name" />
             <p class="product-name">{{ product.name }}</p>
-            <p class="product-price">{{ product.price }}</p>
+            <p class="product-price">${{ product.price }}</p>
             <br />
             <p class="informacion">{{ product.description }}</p>
             <!-- Botón para agregar al carrito -->
@@ -49,41 +49,41 @@ const products = ref([
 {
     name: "Avène",
     items: [
-    { name: "Cleanance Solar SPF50+", price: "$509.00", image: new URL("@/assets/Img/Cleanance Solar SPF50+.jpg", import.meta.url).href, description: "Protector solar para piel grasa." },
-    { name: "Ultra-Mat Fluido SPF 50+", price: "$484.00", image: new URL("@/assets/Img/Ultra-Mat Fluido SPF 50+.jpg", import.meta.url).href, description: "Protector solar para piel mixta." },
-    { name: "Agua Termal", price: "$400.00", image: new URL("@/assets/Img/Agua termal.jpg", import.meta.url).href, description: "Calma la piel sensible." },
-    { name: "Cleanance Comedomed", price: "$500.00", image: new URL("@/assets/Img/Cleanance Comedomed.jpg", import.meta.url).href, description: "Tratamiento anti-acné." },
-    { name: "Cleanance Solar con Color SPF 50+", price: "$509.00", image: new URL("@/assets/Img/Cleanance Solar con Color SPF 50+.jpg", import.meta.url).href, description: "Protector solar con color para piel grasa." }
+    { name: "Cleanance Solar SPF50+", price: 509, image: new URL("@/assets/Img/Cleanance Solar SPF50+.jpg", import.meta.url).href, description: "Protector solar para piel grasa." },
+    { name: "Ultra-Mat Fluido SPF 50+", price: 484, image: new URL("@/assets/Img/Ultra-Mat Fluido SPF 50+.jpg", import.meta.url).href, description: "Protector solar para piel mixta." },
+    { name: "Agua Termal", price: 400, image: new URL("@/assets/Img/Agua termal.jpg", import.meta.url).href, description: "Calma la piel sensible." },
+    { name: "Cleanance Comedomed", price: 500.00, image: new URL("@/assets/Img/Cleanance Comedomed.jpg", import.meta.url).href, description: "Tratamiento anti-acné." },
+    { name: "Cleanance Solar con Color SPF 50+", price: 509.00, image: new URL("@/assets/Img/Cleanance Solar con Color SPF 50+.jpg", import.meta.url).href, description: "Protector solar con color para piel grasa." }
     ]
 },
 {
     name: "La Roche-Posay",
     items: [
-{ name: "Anthelios UVmune 400 SPF 50+ Oil", price: "$509.00", image: new URL("@/assets/Img/Anthelios UVmune 400 SPF 50+ Oil Control Gel-Crema.jpg", import.meta.url).href, description: "Protector solar facial para piel grasa." },
-{ name: "Effaclar Mat", price: "$484.00", image: new URL("@/assets/Img/Effaclar Mat.jpg", import.meta.url).href, description: "Hidratante matificante para piel grasa." },
-{ name: "Effaclar Gel Limpiador", price: "$500.00", image: new URL("@/assets/Img/Effaclar Gel Limpiador Purificante.jpg", import.meta.url).href, description: "Gel limpiador facial para piel con acné." },
-{ name: "Kerium DS Anti-caspa", price: "$600.00", image: new URL("@/assets/Img/Kerium DS Anti-caspa.jpg", import.meta.url).href, description: "Shampoo anti-caspa persistente." },
-{ name: "Mela B3 Serum", price: "$509.00", image: new URL("@/assets/Img/Mela B3 Serum.jpg", import.meta.url).href, description: "Serum para manchas y marcas." }
+{ name: "Anthelios UVmune 400 SPF 50+ Oil", price: 509.00, image: new URL("@/assets/Img/Anthelios UVmune 400 SPF 50+ Oil Control Gel-Crema.jpg", import.meta.url).href, description: "Protector solar facial para piel grasa." },
+{ name: "Effaclar Mat", price: 484.00, image: new URL("@/assets/Img/Effaclar Mat.jpg", import.meta.url).href, description: "Hidratante matificante para piel grasa." },
+{ name: "Effaclar Gel Limpiador", price: 500.00, image: new URL("@/assets/Img/Effaclar Gel Limpiador Purificante.jpg", import.meta.url).href, description: "Gel limpiador facial para piel con acné." },
+{ name: "Kerium DS Anti-caspa", price: 600.00, image: new URL("@/assets/Img/Kerium DS Anti-caspa.jpg", import.meta.url).href, description: "Shampoo anti-caspa persistente." },
+{ name: "Mela B3 Serum", price: 509, image: new URL("@/assets/Img/Mela B3 Serum.jpg", import.meta.url).href, description: "Serum para manchas y marcas." }
     ]
 },
 {
     name: "Eucerin",
     items: [
-    { name: "Pigment Control Sun Fluid SPF 50+", price: "$509.00", image: new URL("@/assets/Img/Pigment Control Sun Fluid SPF 50+.jpg", import.meta.url).href, description: "Protección solar para prevenir manchas." },
-    { name: "Atopi Control Bálsamo", price: "$484.00", image: new URL("@/assets/Img/Atopi Control Bálsamo Textura Ligera.jpg", import.meta.url).href, description: "Bálsamo para piel atópica." },
-    { name: "Anti-Pigment Crema Contorno de Ojos", price: "$400.00", image: new URL("@/assets/Img/Anti-Pigment Crema Contorno de Ojos.jpg", import.meta.url).href, description: "Reduce manchas y ojeras." },
-    { name: "Dermopure Oil Control Fluido Facial", price: "$500.00", image: new URL("@/assets/Img/Dermopure Oil Control Fluido Facial.jpg", import.meta.url).href, description: "Fluido facial para piel grasa." },
-    { name: "Anti-Pigment Dual Serum Facial", price: "$509.00", image: new URL("@/assets/Img/Anti-Pigment Dual Serum Facial.jpg", import.meta.url).href, description: "Serum para manchas en la piel." }
+    { name: "Pigment Control Sun Fluid SPF 50+", price: 509, image: new URL("@/assets/Img/Pigment Control Sun Fluid SPF 50+.jpg", import.meta.url).href, description: "Protección solar para prevenir manchas." },
+    { name: "Atopi Control Bálsamo", price: 484, image: new URL("@/assets/Img/Atopi Control Bálsamo Textura Ligera.jpg", import.meta.url).href, description: "Bálsamo para piel atópica." },
+    { name: "Anti-Pigment Crema Contorno de Ojos", price: 400, image: new URL("@/assets/Img/Anti-Pigment Crema Contorno de Ojos.jpg", import.meta.url).href, description: "Reduce manchas y ojeras." },
+    { name: "Dermopure Oil Control Fluido Facial", price: 500, image: new URL("@/assets/Img/Dermopure Oil Control Fluido Facial.jpg", import.meta.url).href, description: "Fluido facial para piel grasa." },
+    { name: "Anti-Pigment Dual Serum Facial", price: 509, image: new URL("@/assets/Img/Anti-Pigment Dual Serum Facial.jpg", import.meta.url).href, description: "Serum para manchas en la piel." }
     ]
 },
 {
     name: "ISDIN",
     items: [
-    { name: "Lambdapil Shampoo", price: "$509.00", image: new URL("@/assets/Img/Lambdapil Shampoo.jpg", import.meta.url).href, description: "Shampoo para caída del cabello." },
-    { name: "Fotoprotector Gel Cream Wet Skin", price: "$500.00", image: new URL("@/assets/Img/Fotoprotector Gel Cream Wet Skin.jpg", import.meta.url).href, description: "Protector solar en gel-crema." },
-    { name: "Warts Verrutop", price: "$450.00", image: new URL("@/assets/Img/Warts Verrutop.jpg", import.meta.url).href, description: "Solución para tratar verrugas." },
-    { name: "Psorisdin Shampoo", price: "$509.00", image: new URL("@/assets/Img/Psorisdin Shampoo.jpg", import.meta.url).href, description: "Shampoo para descamación del cuero cabelludo." },
-    { name: "Nutratopic PRO-AMP Loción Corporal Emoliente", price: "$500.00", image: new URL("@/assets/Img/Nutratopic PRO-AMP Loción Corporal Emoliente.jpg", import.meta.url).href, description: "Loción para piel atópica." }
+    { name: "Lambdapil Shampoo", price: 509, image: new URL("@/assets/Img/Lambdapil Shampoo.jpg", import.meta.url).href, description: "Shampoo para caída del cabello." },
+    { name: "Fotoprotector Gel Cream Wet Skin", price: 500, image: new URL("@/assets/Img/Fotoprotector Gel Cream Wet Skin.jpg", import.meta.url).href, description: "Protector solar en gel-crema." },
+    { name: "Warts Verrutop", price: 450, image: new URL("@/assets/Img/Warts Verrutop.jpg", import.meta.url).href, description: "Solución para tratar verrugas." },
+    { name: "Psorisdin Shampoo", price: 509, image: new URL("@/assets/Img/Psorisdin Shampoo.jpg", import.meta.url).href, description: "Shampoo para descamación del cuero cabelludo." },
+    { name: "Nutratopic PRO-AMP Loción Corporal Emoliente", price: 500, image: new URL("@/assets/Img/Nutratopic PRO-AMP Loción Corporal Emoliente.jpg", import.meta.url).href, description: "Loción para piel atópica." }
     ]
 }
 ]);

@@ -1,8 +1,7 @@
 <template>
   <div class="cart-page">
     <h1>Carrito de compras</h1>
-    <br>
-    <br>
+    <br><br>
 
     <!-- Si no hay productos en el carrito -->
     <div v-if="cartItemsCount === 0">
@@ -15,13 +14,19 @@
         <li v-for="(product, index) in cartItems" :key="index">
           <img :src="product.image" :alt="product.name" width="50" />
           <span>{{ product.name }}</span>
-          <span>{{ product.price }}</span>
+          <span>{{ formatCurrency(product.price) }}</span>
           <button @click="removeFromCart(product)">Eliminar</button>
         </li>
       </ul>
-      <br>
-      <br>
-      <br>
+
+      <!-- Total del carrito -->
+      <div class="total" style="margin-top: 20px;">
+        <strong>Total: {{ formatCurrency(cartTotal) }}</strong>
+        <button @click="goToCheckout">Realizar pago</button>
+      </div>
+
+
+      <br><br>
       <button @click="clearCart">Vaciar carrito</button>
     </div>
   </div>
@@ -29,26 +34,51 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useCartStore } from '@/stores/cartStore'; // Importa la tienda del carrito
+import { useCartStore } from '@/stores/cartStore';
+import { useRouter } from 'vue-router'; // <--- Aquí va la importación
 
-const cartStore = useCartStore(); // Usar la tienda de Pinia
+const router = useRouter(); // <--- Inicializar el router
 
-// Computed para obtener los productos del carrito
+const cartStore = useCartStore();
+
 const cartItems = computed(() => cartStore.cart);
-
-// Computed para obtener el número de productos en el carrito
 const cartItemsCount = computed(() => cartStore.cart.length);
+const cartTotal = computed(() =>
+  cartStore.cart.reduce((total, item) => total + Number(item.price), 0)
+);
 
-// Acción para eliminar un producto del carrito
 const removeFromCart = (product) => {
   cartStore.removeFromCart(product);
 };
 
-// Acción para vaciar el carrito
 const clearCart = () => {
-  cartStore.clearCart();
+  if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+    cartStore.clearCart();
+  }
+};
+
+// Botón para ir al formulario de pago
+const goToCheckout = () => {
+  if (cartItemsCount.value === 0) {
+    alert("Tu carrito está vacío");
+    return;
+  }
+  router.push('/pago'); // Asegúrate de que exista esa ruta en tu router
+};
+
+// Formatear moneda
+const formatCurrency = (amount) => {
+  const numericAmount = Number(amount);
+  if (isNaN(numericAmount)) return '$0.00';
+
+  return new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'MXN',
+  }).format(numericAmount);
 };
 </script>
+
+
 
 <style>
 :root {
@@ -69,6 +99,13 @@ body {
   font-family: Arial, sans-serif;
   color: #333;
   background-color: var(--clr-blanco2);
+}
+
+.total{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Estilos para la página del carrito */
@@ -165,7 +202,7 @@ body {
   background-color: var(--clr-grisFuerte);
 }
 
-button {
+button, .button {
   margin-left: 15px;
   background-color: var(--clr-negro); /* Fondo negro */
   color: var(--clr-blanco); /* Texto blanco */
@@ -175,6 +212,10 @@ button {
   cursor: pointer; /* Cambia el cursor al pasar el mouse */
   border-radius: 5px; /* Bordes redondeados */
   transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.button{
+  width: 100px;
 }
 
 button:hover {
