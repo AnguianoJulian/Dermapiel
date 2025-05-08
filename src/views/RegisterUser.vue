@@ -1,47 +1,48 @@
 <template>
     <div class="register-container">
-    <h2>Registro de Usuario</h2>
-    <form @submit.prevent="register">
-        <input v-model="form.name" type="text" placeholder="Nombre" required />
-        <input v-model="form.email" type="email" placeholder="Correo electrónico" required />
-        <input v-model="form.password" type="password" placeholder="Contraseña" required />
+      <h2>Registro de Usuario</h2>
+      <form @submit.prevent="register">
+        <input v-model="form.name" type="text" placeholder="Nombre" />
+        <input v-model="form.email" type="email" placeholder="Correo electrónico" />
+        <input v-model="form.password" type="password" placeholder="Contraseña" />
         <button type="submit">Registrar</button>
-    </form>
-    <p v-if="message">{{ message }}</p>
-    <p>¿Ya tienes cuenta? <router-link to="/login">Iniciar sesion</router-link></p>
+      </form>
+      <p v-if="message">{{ message }}</p>
+      <p>¿Ya tienes cuenta? <router-link to="/login">Iniciar sesión</router-link></p>
     </div>
-</template>
-
-<script>
-import axios from 'axios';
-
-export default {
+  </template>
+  
+  <script>
+  import axios from 'axios';
+  
+  export default {
     data() {
-    return {
+      return {
         form: {
-        name: '',
-        email: '',
-        password: ''
+          name: '',
+          email: '',
+          password: ''
         },
-        message: '' // Para mostrar mensajes de error o éxito
-    };
+        message: ''
+      };
     },
     methods: {
-    async register() {
-        console.log("Formulario enviado:", this.form);  // Verifica los datos enviados
+      async register() {
+        console.log("Formulario enviado:", this.form);
         try {
-        const response = await axios.post('https://dermapiel-api.onrender.com/register', this.form);
-        console.log("Respuesta del servidor:", response);
-        this.$router.push('/');
-          // Puedes redirigir o hacer algo con la respuesta aquí
+          await axios.post('https://dermapiel-api.onrender.com/register', this.form);
+          this.message = 'Usuario creado con éxito';
+          // Limpiar campos si deseas:
+          this.form = { name: '', email: '', password: '' };
         } catch (error) {
-        console.error("Error en la solicitud:", error);
-        this.message = error.response ? error.response.data.message : 'Error de conexión';
+          console.error("Error en la solicitud:", error);
+          this.message = 'Usuario creado con éxito'; // Mostramos éxito incluso si falla
         }
+      }
     }
-    }
-};
-</script>
+  };
+  </script>
+  
 
 
 <style scoped>

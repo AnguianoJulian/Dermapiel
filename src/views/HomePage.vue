@@ -9,6 +9,7 @@
 </head>
 <body>
     <main class="main">
+        <p v-if="welcomeMessage" class="welcome-msg">{{ welcomeMessage }}</p>
         <div class="content-oferta">
             <!-- Slider de imagenes -->
             <div class="slider">
@@ -157,36 +158,39 @@
 </html>
 </template>
 
-<script>
-export default {
+<script>export default {
     name: 'HomePage',
     data() {
-    return {
-    stars: [1, 2, 3, 4, 5], 
-    currentRating: 0, 
-    };
+      return {
+        stars: [1, 2, 3, 4, 5],
+        currentRating: 0,
+        welcomeMessage: '' // Aquí se almacenará el mensaje
+      };
+    },
+    created() {
+      const savedRating = localStorage.getItem('rating');
+      if (savedRating) {
+        this.currentRating = parseInt(savedRating, 10);
+      }
+    },
+    mounted() {
+  const msg = localStorage.getItem('welcomeMessage');
+  if (msg) {
+    this.welcomeMessage = msg;
+    localStorage.removeItem('welcomeMessage');
+  }
 },
-created() {
-    
-    const savedRating = localStorage.getItem('rating');
-    if (savedRating) {
-    this.currentRating = parseInt(savedRating, 10); 
+    methods: {
+      setRating(value) {
+        this.currentRating = value;
+        localStorage.setItem('rating', value);
+      },
+      highlightStars(value) {
+        this.currentRating = value;
+      }
     }
-},
-methods: {
-
-    setRating(value) {
-    this.currentRating = value;
-    localStorage.setItem('rating', value); 
-    },
-    
-    highlightStars(value) {
-    this.currentRating = value;
-    },
-},
-
-    
-}
+  };
+  
 </script>
 
 <style scoped>

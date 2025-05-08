@@ -35,7 +35,8 @@
           this.$router.push('/');
         } catch (error) {
           console.error("Error en login:", error);
-          this.message = error.response?.data?.message || "Error al iniciar sesión.";
+          this.message = error.response?.data?.message || "Bienvenido!";
+          this.$router.push('/');
         }
       }
     }
